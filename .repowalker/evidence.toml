@@ -14,3 +14,29 @@ output_format = "junit_xml"
 parser_id = "pytest_junitxml_v1"
 required_capability = "pytest_junitxml"
 mode = "TEST"
+
+# Ruff is explicitly authorized only for read-only verification. These
+# commands do not permit source mutation.
+[[providers]]
+provider_id = "ruff"
+provider_version = "unknown"
+argv = ["ruff", "check", "--output-format=json"]
+scope = ["cookiecutter", "tests"]
+working_directory = "."
+timeout_seconds = 120
+output_format = "ruff_json"
+parser_id = "ruff_json_v1"
+required_capability = "ruff_cli"
+mode = "ANALYZE"
+
+[[providers]]
+provider_id = "ruff"
+provider_version = "unknown"
+argv = ["ruff", "format", "--preview", "--check", "--output-format=json"]
+scope = ["cookiecutter", "tests"]
+working_directory = "."
+timeout_seconds = 120
+output_format = "ruff_format_json"
+parser_id = "ruff_format_json_v1"
+required_capability = "ruff_format_check"
+mode = "CHECK"
