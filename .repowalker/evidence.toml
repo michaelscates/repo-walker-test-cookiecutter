@@ -1,0 +1,16 @@
+schema_version = 1
+
+# Repo-Walker test-target authorization. Pytest is explicitly authorized for
+# bounded verification; the target repository's native test configuration
+# remains authoritative for discovery.
+[[providers]]
+provider_id = "pytest"
+provider_version = "unknown"
+argv = ["python", "-m", "pytest"]
+scope = ["tests"]
+working_directory = "."
+timeout_seconds = 120
+output_format = "junit_xml"
+parser_id = "pytest_junitxml_v1"
+required_capability = "pytest_junitxml"
+mode = "TEST"
